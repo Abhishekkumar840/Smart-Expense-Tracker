@@ -117,13 +117,19 @@ const categories = [
 
 async function seedCategories() {
   try {
+    console.log("Starting category seeding...");
+
     const mongoUri = process.env.MONGO_URI;
 
     if (!mongoUri) {
       throw new Error("MONGO_URI is missing from .env");
     }
 
+    console.log("Connecting to MongoDB...");
+
     await mongoose.connect(mongoUri);
+
+    console.log("MongoDB connected successfully.");
 
     let inserted = 0;
     let skipped = 0;
@@ -136,6 +142,7 @@ async function seedCategories() {
       });
 
       if (existing) {
+        console.log(`Already exists: ${category.type} - ${category.name}`);
         skipped++;
         continue;
       }
@@ -146,15 +153,34 @@ async function seedCategories() {
         isSystemDefault: true,
       });
 
+      console.log(`Inserted: ${category.type} - ${category.name}`);
       inserted++;
     }
+
+    const total = await CategoryModel.countDocuments({
+      owner: null,
+      isSystemDefault: true,
+    });
+
+    console.log("");
+    console.log("=================================");
+    console.log("CATEGORY SEEDING COMPLETED");
+    console.log("=================================");
+    console.log(`Inserted : ${inserted}`);
+    console.log(`Skipped  : ${skipped}`);
+    console.log(`Total system categories : ${total}`);
+    console.log("=================================");
 
     await mongoose.disconnect();
 
     process.exit(0);
   } catch (error) {
+    console.error("");
+    console.error("=================================");
     console.error("CATEGORY SEED FAILED");
+    console.error("=================================");
     console.error(error);
+    console.error("=================================");
 
     await mongoose.disconnect().catch(() => {});
 

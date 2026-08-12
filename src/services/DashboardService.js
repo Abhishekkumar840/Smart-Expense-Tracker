@@ -1,5 +1,4 @@
 const AnalyticsService = require('./AnalyticsService');
-const ExpenseCalculator = require('./ExpenseCalculator');
 const BudgetModel = require('../models/Budget.model');
 const NotificationModel = require('../models/Notification.model');
 const ExpenseModel = require('../models/Expense.model');

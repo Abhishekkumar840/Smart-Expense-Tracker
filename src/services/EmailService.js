@@ -38,7 +38,7 @@ class EmailService {
   }
 
   async sendVerificationEmail(user, rawToken) {
-    const verifyUrl = `${config.clientUrl}/verify-email?token=${rawToken}`;
+    const verifyUrl = `${config.clientUrl}/verify-email/${rawToken}`;
     await this.#send({
       to: user.email,
       subject: 'Verify your Smart Expense Tracker account',
