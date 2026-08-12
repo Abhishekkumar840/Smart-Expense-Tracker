@@ -54,14 +54,14 @@ class AuthService {
       throw ApiError.conflict('An account with this email already exists');
     }
 
-    const userDoc = new this.#userModel({ name, email, password });
-    const token = userDoc.generateEmailVerificationToken();
+    const userDoc = new this.#userModel({
+      name,
+      email,
+      password,
+      isEmailVerified: true,
+    });
 
     await userDoc.save();
-
-    await this.#emailService
-      .sendVerificationEmail(userDoc, token)
-      .catch(() => {});
 
     return UserDomain.fromDocument(userDoc);
   }
@@ -88,11 +88,7 @@ class AuthService {
     const user = UserDomain.fromDocument(userDoc);
 
     if (!user.canLogin()) {
-      throw ApiError.forbidden(
-        user.isEmailVerified
-          ? 'Your account has been disabled'
-          : 'Please verify your email before logging in'
-      );
+      throw ApiError.forbidden('Your account has been disabled');
     }
 
     userDoc.lastLoginAt = new Date();

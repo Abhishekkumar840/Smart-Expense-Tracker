@@ -52,7 +52,7 @@ class User extends BaseEntity {
   }
 
   canLogin() {
-    return this.#isActive && this.#isEmailVerified;
+    return this.#isActive;
   }
 
   verifyEmail() {
