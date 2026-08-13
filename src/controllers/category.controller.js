@@ -64,8 +64,14 @@ const createCategory = asyncHandler(async (req, res) => {
  */
 const getAllCategories = asyncHandler(async (req, res) => {
   const { type } = req.query;
+  const userId = req.userId;
 
-  const filter = {};
+  const filter = {
+    $or: [
+      { owner: null },      // system categories
+      { owner: userId },    // user custom categories
+    ],
+  };
 
   if (type) {
     filter.type = type;
@@ -75,21 +81,17 @@ const getAllCategories = asyncHandler(async (req, res) => {
     .sort({ name: 1 })
     .lean();
 
-  const categories = categoryDocs.map((doc) => {
-    return Category.fromDocument(doc).toJSON();
-  });
+  const categories = categoryDocs.map((doc) =>
+    Category.fromDocument(doc).toJSON()
+  );
 
-  return res
-    .status(200)
-    .json(
-      new ApiResponse(
-        200,
-        {
-          categories,
-        },
-        "Categories fetched successfully"
-      )
-    );
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      { categories },
+      "Categories fetched successfully"
+    )
+  );
 });
 
 /**
