@@ -1,6 +1,14 @@
 # Smart Expense Tracker API
 
-A Node.js and Express backend for the Smart Expense Tracker application. This API handles user authentication, financial records, budget tracking, dashboards, reports, notifications, and admin operations for a personal finance platform.
+Backend API for a full-stack expense management application built with Node.js, Express.js and MongoDB.
+
+The API provides authentication, expense and income management, budgets, categories, dashboard analytics, reports, notifications and admin operations.
+
+## 🔗 Links
+
+- 🌐 [Live Application](https://smart-expense-tracker-frontend-i0p1.onrender.com)
+- 🔌 [Backend API](https://smart-expense-tracker-2-8xd6.onrender.com)
+-  🎨[Frontend Repository](https://github.com/Abhishekkumar840/Smart-Expense-Tracker-Frontend)
 
 ## Overview
 
@@ -34,91 +42,40 @@ The backend is built with Express, MongoDB via Mongoose, and JWT-based authentic
 - Winston logging
 - Helmet, CORS, compression, cookie-parser
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 backend/
-├── package.json
-├── .env.example
-├── .gitignore
-├── .eslintrc.json
-├── README.md
 ├── src/
-│   ├── app.js
-│   ├── server.js
-│   ├── seedCategories.js
 │   ├── config/
-│   │   ├── db.config.js
-│   │   ├── env.config.js
-│   │   └── logger.config.js
-│   ├── constants/
-│   │   └── roles.constant.js
 │   ├── controllers/
-│   │   ├── admin.controller.js
-│   │   ├── auth.controller.js
-│   │   ├── budget.controller.js
-│   │   ├── category.controller.js
-│   │   ├── dashboard.controller.js
-│   │   ├── expense.controller.js
-│   │   ├── income.controller.js
-│   │   ├── notification.controller.js
-│   │   └── report.controller.js
 │   ├── domain/
-│   │   ├── base/
-│   │   ├── Budget.js
-│   │   ├── Category.js
-│   │   ├── Expense.js
-│   │   ├── Income.js
-│   │   ├── Notification.js
-│   │   ├── Report.js
-│   │   └── User.js
 │   ├── middlewares/
-│   │   ├── auth.middleware.js
-│   │   ├── error.middleware.js
-│   │   ├── notFound.middleware.js
-│   │   ├── rateLimiter.middleware.js
-│   │   └── validate.middleware.js
 │   ├── models/
-│   │   ├── Budget.model.js
-│   │   ├── Category.model.js
-│   │   ├── Expense.model.js
-│   │   ├── Income.model.js
-│   │   ├── Notification.model.js
-│   │   └── User.model.js
 │   ├── routes/
-│   │   ├── admin.routes.js
-│   │   ├── auth.routes.js
-│   │   ├── budget.routes.js
-│   │   ├── category.routes.js
-│   │   ├── dashboard.routes.js
-│   │   ├── expense.routes.js
-│   │   ├── income.routes.js
-│   │   ├── notification.routes.js
-│   │   └── report.routes.js
 │   ├── services/
-│   │   ├── AnalyticsService.js
-│   │   ├── AuthService.js
-│   │   ├── BudgetService.js
-│   │   ├── DashboardService.js
-│   │   ├── EmailService.js
-│   │   ├── ExpenseCalculator.js
-│   │   ├── NotificationService.js
-│   │   ├── PdfGenerator.js
-│   │   └── ValidationService.js
 │   ├── utils/
-│   │   ├── ApiError.js
-│   │   ├── ApiResponse.js
-│   │   └── asyncHandler.js
-│   ├── validations/
-│   │   ├── auth.validation.js
-│   │   ├── budget.validation.js
-│   │   ├── category.validation.js
-│   │   ├── expense.validation.js
-│   │   └── income.validation.js
-│   └── seedCategories.js
+│   └── validations/
+├── .env.example
+├── package.json
 └── README.md
 ```
 
+## 🧩 Backend Highlights
+
+- RESTful API architecture
+- JWT-based authentication and authorization
+- Role-based admin operations
+- Request validation using Joi
+- Password hashing with bcrypt
+- Centralized error handling
+- Rate limiting and security headers
+- MongoDB database integration with Mongoose
+- PDF and CSV report generation
+- Email services using Nodemailer
+- Logging with Winston
+
+```
 ## Setup
 
 1. Install dependencies:
