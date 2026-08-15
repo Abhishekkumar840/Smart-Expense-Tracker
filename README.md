@@ -191,4 +191,4 @@ npm run lint
 
 ## License
 
-This project is intended for local development and project demonstration use unless additional licensing terms are added by the repository owner.
+This project is for educational and portfolio purposes.
